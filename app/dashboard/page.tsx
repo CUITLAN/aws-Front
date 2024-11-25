@@ -5,11 +5,7 @@ export default function Dashboard({ searchParams }: { searchParams: { [key: stri
   
   return (
     <div className="h-full w-4/12 ">
-      <div className='h-[90vh] overflow-hidden overflow-y-auto first:mt-0 last:mb-0'>
-        
-        
-      </div>
-      
+      <h2 className='text-center'>Bienvenido Seleccione una opcion </h2>
     </div>
   );
 }
