@@ -1,5 +1,4 @@
 import React from 'react';
-import { p } from 'framer-motion/client';
 
 export default function Dashboard({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   

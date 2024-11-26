@@ -36,7 +36,8 @@ const LayoutPage = async ({ children }: { children: ReactNode }) => {
 
     // Renderizar la página
     return (
-      <div className="h-[90vh] w-full flex flex-row">
+      
+      <div className="h-screen w-full flex flex-row">
         <div className="w-3/12">
           <FilterCard products={products} categories={categories} />
         </div>

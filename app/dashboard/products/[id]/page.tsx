@@ -12,15 +12,17 @@ const ProductPage = async ({ params }: { params: { id: bigint } }) => {
   });
   const product: Product = await res.json();
   
-  const res2 = await fetch(`${API_URL}/categories/`);
+  const res2 = await fetch(`${API_URL}/categorias/`);
   const providers: Category[] = await res2.json();
 
   return (
     <div className="w-full">
-      <div className="bg-orange-500">
+      <div className="bg-gray-600">
       <h1 className="w-full font-bold text-white text-center text-2xl py-2">{product.name}</h1>
-      <h2 className="text-xl font-bold text-white text-center">Precio : {product.price}</h2>
+      <h2 className="text-xl font-bold text-white text-center">${product.price}</h2>
       <h2 className="text-md font-bold text-white text-center py-2">Descripcion: {product.description}</h2>
+      <h2 className="text-md font-bold text-white text-center py-2">Estatus: {product.category?.name}</h2>
+
       </div>
       
       <UpdateProductsForms product={product} providers={providers} />
