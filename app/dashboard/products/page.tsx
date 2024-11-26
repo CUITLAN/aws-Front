@@ -4,7 +4,7 @@ import { Button, Input } from "@nextui-org/react";
 import SelectCategories from "./_components/SelectCategories";
 
 const ProductMainPage = async () => {
-  const responseProviders = await fetch(`${API_URL}/Categorias`);
+  const responseProviders = await fetch(`${API_URL}/categorias`);
   const providers = await responseProviders.json();
   return (
     <form action={createProduct} className="  px-10 justify-center pt-10">
@@ -13,7 +13,7 @@ const ProductMainPage = async () => {
         <Input name="name" label="Nombre del Producto" />
         <Input name="price" label="Precio" />
         <Input name="description" label="description"/>
-        <Input name="technical_description" label="Descripcion Tecnica"/>
+        <Input name="technical_description" label="description"/>
         <Input name="sat_key" label="sat_key" />
         <Input name="data_sheet" label="Link" />
         <SelectCategories categories={providers} /> 

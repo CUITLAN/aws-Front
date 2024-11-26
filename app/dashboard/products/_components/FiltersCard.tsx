@@ -28,7 +28,7 @@ export default function FilterCard({
   }, [filtered, categories, products]);
 
   return (
-    <div className="min-h-[90vh] max-h-[90vh] overflow-y-auto flex flex-col gap-4 border-r-orange-200 px-10 border-r-2 pt-10">
+    <div className="min-h-[90vh] h-screen overflow-y-auto flex flex-col gap-4 border-r-orange-200 px-10 border-r-2 pt-10">
       <Select
         label="Categoria"
         onChange={(e) => {
