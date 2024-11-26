@@ -14,7 +14,7 @@ export default async function UpdateProducts(ProductId: string, formData: FormDa
     product.price =+ product.price;
     product.countSeal =+ product.countSeal;
     const res = await fetch(`${API_URL}/products/${ProductId}`, {
-        method: "PATCH",
+        method: "PUT",
         body: JSON.stringify(product),
         headers: {
             "content-type": "application/json"
