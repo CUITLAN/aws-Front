@@ -29,18 +29,7 @@ export default function FilterCard({
 
   return (
     <div className="min-h-[90vh] h-screen overflow-y-auto flex flex-col gap-4 border-r-orange-200 px-10 border-r-2 pt-10">
-      <Select
-        label="Categoria"
-        onChange={(e) => {
-          setProvider(e.target.value);
-        }}
-      >
-        {categories.map((category) => (
-          <SelectItem key={category.id.toString()} value={category.id.toString()}>
-            {category.name}
-          </SelectItem>
-        ))}
-      </Select>
+      
       <Input
         onChange={(e) => {
           setFilter(e.target.value);

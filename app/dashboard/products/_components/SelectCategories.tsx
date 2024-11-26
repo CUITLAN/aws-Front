@@ -15,7 +15,7 @@ export default function SelectCategories({
   return (
     <Select
       defaultSelectedKeys={defaultProvider ? [defaultProvider] : undefined}
-      label="Products"
+      label="Categoria"
       name="category_id"
     >
       {categories.map((category) => (
