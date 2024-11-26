@@ -2,7 +2,7 @@ import { API_URL } from "@/contants";
 import { Inventory } from "@/entities";
 import React from 'react'
 import {Card} from "@nextui-org/react";
-import DeleteInventoryForms from "./[id]/_components/DeleteInventary";
+import DeleteInventoryForms from "./_components/DeleteInventary";
 
 
 const page = async () => {

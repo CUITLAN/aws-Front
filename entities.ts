@@ -17,3 +17,11 @@ export interface Product {
     products?: Product[]; // Relación con múltiples productos (opcional)
   }
   
+  export interface Inventory {
+    id: bigint, 
+    quantity: number,
+    sold_quantity: number,
+    bin_location_id: bigint,
+    status_id: bigint,
+    inventory?: Inventory;
+  }
