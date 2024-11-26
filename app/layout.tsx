@@ -1,10 +1,10 @@
 // app/layout.tsx
 import './globals.css';
-import Providers from '../providers'; 
+import {Providers} from '../context/Providers'; 
 
 export const metadata = {
-  title: 'Extraño mi cama',
-  description: 'PaginadeInicio',
+  title: 'Equipo 3 ',
+  description: 'Pagina web del octso',
 };
 
 export default function RootLayout({
