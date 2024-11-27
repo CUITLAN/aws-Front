@@ -1,32 +1,18 @@
 import { API_URL } from "@/contants";
 import { Inventory } from "@/entities";
-import React from "react";
+import React from 'react';
+import { Card } from "@nextui-org/react";
+import DeleteInventoryForms from "./[id]/_components/DeleteInventary";
 import AddInventoryForm from "./[id]/_components/AddInventoryform";
 
-// Función para obtener datos en tiempo de compilación
-export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/inventory/`);
-  if (!res.ok) {
-    throw new Error("No se pudieron obtener los datos de inventario.");
-  }
-
-  const inventory: Inventory[] = await res.json();
-
-  return {
-    props: {
-      inventory,
-    },
-  };
+const page = async () => {
+    const res = await fetch(`${API_URL}/inventory/`);
+    const inventory: Inventory[] = await res.json();
+    return (
+        <div style={{ display: 'flex', justifyContent: 'center', margin: 10, flexWrap: "wrap", gap: 10 }}>
+            <AddInventoryForm />
+        </div>
+    )
 }
-
-const page = ({ inventory }: { inventory: Inventory[] }) => {
-  return (
-    <div className="px-10 justify-center pt-10">
-      {/* Renderiza el formulario para agregar inventario */}
-      <AddInventoryForm />
-
-    </div>
-  );
-};
 
 export default page;
