@@ -4,12 +4,24 @@ import UpdateProductsForms from "./_components/UpdateProductsForms";
 import DeleteProductsForms from "./_components/DeleteProducrs";
 import Link from "next/link";
 
-const ProductPage = async ({ params }: { params: { id: bigint } }) => {
-  const res = await fetch(`${API_URL}/products/${params.id}`, {
+const ProductPage = async ({ params }: { params?: { id?: string } }) => {
+  // Validamos que params y params.id existan
+  if (!params || !params.id) {
+    return <div>Error: Parámetros no disponibles.</div>;
+  }
+
+  const productId = params.id; // Ahora estamos seguros de que params.id es accesible.
+
+  const res = await fetch(`${API_URL}/products/${productId}`, {
     next: {
-      tags: [`dashboard:products:${params.id}`],
+      tags: [`dashboard:products:${productId}`],
     },
   });
+
+  if (!res.ok) {
+    return <div>Error: Producto no encontrado.</div>;
+  }
+
   const product: Product = await res.json();
 
   const res2 = await fetch(`${API_URL}/categorias/`);
@@ -29,11 +41,7 @@ const ProductPage = async ({ params }: { params: { id: bigint } }) => {
         </h2>
         <p className="text-xl font-bold text-blue-500 text-center">
           {product?.data_sheet ? (
-            <Link
-              href={product.data_sheet}
-              
-              rel="noopener noreferrer"
-            >
+            <Link href={product.data_sheet} rel="noopener noreferrer">
               Más Información
             </Link>
           ) : (
