@@ -5,8 +5,8 @@ export default async function createInventory(inventory: any) {
     inventory.id = inventory.id.toString();
     inventory.quantity = +inventory.quantity;
     inventory.sold_quantity = +inventory.sold_quantity; 
-    inventory.bin_location_id = inventory.bin_location_id.toString(); 
-    inventory.status_id = inventory.status_id.toString(); 
+    inventory.bin_location_id = inventory.bin_location_id; 
+    inventory.status_id = inventory.status_id; 
 
     try {
         const res = await fetch(`${API_URL}/inventory`, {
