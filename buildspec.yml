@@ -3,14 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm install --production
+        - npm ci # Instala todas las dependencias, incluyendo devDependencies
     build:
       commands:
-        - npm run build
+        - npm run build # Construye el proyecto con Next.js
   artifacts:
-    baseDirectory: .next
+    baseDirectory: .next # Directorio donde Next.js genera los archivos
     files:
-      - '**/*'
+      - '**/*' # Incluye todos los archivos generados en el build
   cache:
     paths:
-      - node_modules/**/* # Acelera las construcciones futuras
+      - node_modules/**/* # Cachea dependencias para futuros builds
