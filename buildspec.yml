@@ -8,7 +8,7 @@ frontend:
       commands:
         - npm run build # Construye el proyecto con Next.js
   artifacts:
-    baseDirectory: .next # Directorio donde Next.js genera los archivos
+    baseDirectory: out # Cambia de .next a out
     files:
       - '**/*' # Incluye todos los archivos generados en el build
   cache:
