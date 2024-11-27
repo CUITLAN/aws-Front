@@ -5,7 +5,6 @@ export default function InventoryForm() {
   return (
     <form
       action={createInventory}
-      method="POST" // Este debe ser estático y no dinámico
       className="px-10 justify-center pt-10"
     >
       <div className="flex flex-col px-10 py-10 rounded-md gap-6 bg-gray-300">
