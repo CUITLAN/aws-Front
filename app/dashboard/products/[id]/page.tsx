@@ -4,22 +4,26 @@ import UpdateProductsForms from "./_components/UpdateProductsForms";
 import DeleteProductsForms from "./_components/DeleteProducrs";
 import Link from "next/link";
 
-const ProductPage = async ({ params }: { params?: { id?: string } }) => {
-  // Validamos que params y params.id existan
-  if (!params || !params.id) {
-    return <div>Error: Parámetros no disponibles.</div>;
+// Genera las rutas dinámicas durante la exportación estática
+export async function generateStaticParams() {
+  const res = await fetch(`${API_URL}/products`);
+  if (!res.ok) {
+    throw new Error("No se pudieron obtener los productos");
   }
 
-  const productId = params.id; // Ahora estamos seguros de que params.id es accesible.
+  const products: Product[] = await res.json();
+  return products.map((product) => ({
+    id: product.id,
+  }));
+}
 
-  const res = await fetch(`${API_URL}/products/${productId}`, {
-    next: {
-      tags: [`dashboard:products:${productId}`],
-    },
-  });
-
+// Obtiene los datos necesarios para la página estática
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  const res = await fetch(`${API_URL}/products/${params.id}`);
   if (!res.ok) {
-    return <div>Error: Producto no encontrado.</div>;
+    return {
+      notFound: true, // Muestra una página de error 404 si no se encuentra el producto
+    };
   }
 
   const product: Product = await res.json();
@@ -27,6 +31,22 @@ const ProductPage = async ({ params }: { params?: { id?: string } }) => {
   const res2 = await fetch(`${API_URL}/categorias/`);
   const providers: Category[] = await res2.json();
 
+  return {
+    props: {
+      product,
+      providers,
+    },
+  };
+}
+
+// Componente principal para la página del producto
+const ProductPage = ({
+  product,
+  providers,
+}: {
+  product: Product;
+  providers: Category[];
+}) => {
   return (
     <div className="w-full item">
       <div className="bg-gray-600">
@@ -37,7 +57,7 @@ const ProductPage = async ({ params }: { params?: { id?: string } }) => {
           ${product.price}
         </h2>
         <h2 className="text-md font-bold text-white text-center py-2">
-          Descripcion: {product.description}
+          Descripción: {product.description}
         </h2>
         <p className="text-xl font-bold text-blue-500 text-center">
           {product?.data_sheet ? (
@@ -50,8 +70,10 @@ const ProductPage = async ({ params }: { params?: { id?: string } }) => {
         </p>
       </div>
 
+      {/* Formulario para actualizar el producto */}
       <UpdateProductsForms product={product} providers={providers} />
       <div className="pl-10">
+        {/* Formulario para eliminar el producto */}
         <DeleteProductsForms id={product.id} />
       </div>
     </div>
