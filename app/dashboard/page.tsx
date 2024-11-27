@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Dashboard({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default function Dashboard() {
   
   return (
     <div className="h-full w-4/12 ">
