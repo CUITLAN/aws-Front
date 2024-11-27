@@ -1,8 +1,8 @@
 import { API_URL } from "@/contants";
-import { revalidateTag } from "next/cache";
 
 export default async function createInventory(inventory: any) {
     // Asegúrate de convertir los campos necesarios a los tipos apropiados
+    inventory.id = inventory.id.toString();
     inventory.quantity = +inventory.quantity;
     inventory.sold_quantity = +inventory.sold_quantity; 
     inventory.bin_location_id = inventory.bin_location_id.toString(); 
@@ -18,8 +18,9 @@ export default async function createInventory(inventory: any) {
         });
 
         if (res.status === 201) {
-            revalidateTag("dashboard:inventory");
             console.log("Inventario creado exitosamente");
+            // En lugar de revalidateTag, puedes redirigir o forzar una recarga
+            window.location.reload();
         } else {
             const error = await res.json();
             console.error("Error al crear el inventario:", error);
