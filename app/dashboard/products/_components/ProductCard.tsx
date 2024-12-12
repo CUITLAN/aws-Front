@@ -13,15 +13,7 @@ const ProductCard2 = ({ product }: { product: Product }) => {
         <p>Nombre del Producto: <b>{product?.name} </b></p>
         <p>Precio : {product?.price}</p>
         <p>Clave Sat : {product?.sat_key}</p>
-        <p>
-          <Link 
-            href={product?.data_sheet} 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            Más Información
-          </Link>
-        </p>
+        <p></p>
       </CardBody>
       {/* <Link className='font-bold underline' href={`/dashboard/providers/${product.provider.providerId}`}>{product.provider.providerName} </Link> */}
     </Card>

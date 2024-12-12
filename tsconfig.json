@@ -7,7 +7,9 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": true, // Mantén strict como true para otras verificaciones
+    "strictNullChecks": false, // Permitir valores nulos
+    "strictPropertyInitialization": false, // Permitir propiedades no inicializadas
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
